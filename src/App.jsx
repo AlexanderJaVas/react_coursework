@@ -7,26 +7,21 @@ import axios from 'axios';
 import Home from './components/Home';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 import React from 'react';
-import Favorites from './components/favorites/Favorites'
 import Basket from './components/basket/Basket'
-import Form from './components/Form'
 
 export const AppContext = React.createContext({})
 
 function App() {
-//хранения данных туров
-const [tyrs, setTyrs] = useState([])
-//для избранных туров
+const [oils, setOils] = useState([])
 const [favorites, setFavorites] = useState([])
-//для корзины
 const [overlayItems, setOverlayItems] = useState([])
 useEffect (()=>{
   async function axiosData(){
-    const tyrsData = await axios.get('https://637f91ca2f8f56e28e904e7d.mockapi.io/tyrs')
+    const oilsData = await axios.get('https://642aac8d00dfa3b5474bbe0f.mockapi.io/oilz')
     const favoritesData = await axios.get('https://637f91ca2f8f56e28e904e7d.mockapi.io/favorites')
     const cartData = await axios.get('https://637f91ca2f8f56e28e904e7d.mockapi.io/cart')
 
-    setTyrs(tyrsData.data)
+    setOils(oilsData.data)
     setFavorites(favoritesData.data)
     setOverlayItems(cartData.data)
   }
@@ -52,8 +47,8 @@ return (
   <AppContext.Provider
   value={
     {
-      tyrs,
-      setTyrs,
+      oils,
+      setOils,
       overlayItems,
       setOverlayItems,
       favorites,
@@ -68,23 +63,11 @@ return (
      <Router>
      <Header/> 
       <Routes>
-        <Route path='/favorites'
-                    element={
-                        <Favorites
-                        favorites={favorites}
-                        setFavorites={setFavorites}
-                        item={tyrs}
-                        overlayItems={overlayItems}
-                        setOverlayItems={setOverlayItems}
-                        />
-                    }
-                /> 
-    
-
+        
     <Route path='/'
                     element={
                         <Home
-                        item={tyrs}
+                        item={oils}
                         overlayItems={overlayItems}
                         setOverlayItems={setOverlayItems}
                         favorites={favorites}
@@ -93,12 +76,7 @@ return (
                     }
                 />
 
-    <Route path='/form'
-                element={
-                        <Form/>
-                    }
-                />
-
+  
         <Route path='/cart'
                 element={
                         <Basket
@@ -118,7 +96,7 @@ return (
       </Router> 
    
     
-      <Footer/>
+      <Footer />
      </div>
 
     </AppContext.Provider>

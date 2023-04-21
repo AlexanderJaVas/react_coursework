@@ -14,7 +14,7 @@ const ItemBasket = (props) => {
                     <span>{props.price}</span>
                   </h5>
                   <button type='button' className='w-100 btn btn-lg btn-primary'
-                onClick={()=>props.deleteItems(props.id)} >X
+                onClick={()=>props.deleteItems(props.id)} >Удалить товар из корзины
                 </button>
             </div></div>
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import Slider from './Slider';
-import CardItem from './cart/CartItem';
+import Slider from './Slider'
+import CardItem from './cart/CartItem'
 
 const Home = (props) => {
   return (
